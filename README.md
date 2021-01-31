@@ -4,36 +4,37 @@
 
 ## What it contains?
 
-* server side render via [goja](https://github.com/dop251/goja)
-* api requests between your react application and server side application directly  via [fetch polyfill](https://github.com/olebedev/gojax/tree/master/fetch)
-* title, Open Graph and other domain-specific meta tags render for each page at the server and at the client
-* server side redirect
-* embedding static files into artefact via bindata
-* high performance [echo](https://github.com/labstack/echo) framework
-* advanced cli via [cli](https://github.com/codegangsta/cli)
-* Makefile based project
-* one(!) terminal window process for development
-* routing via [react-router](https://github.com/reactjs/react-router)
-* ES6 & JSX via [babel-loader](https://github.com/babel/babel-loader) with minimal runtime dependency footprint
-* [redux](https://rackt.org/redux/) as state container
-* [redux-devtools](https://github.com/gaearon/redux-devtools)
-* css styles without global namespace via PostCSS, [css-loader](https://github.com/webpack/css-loader) & css-modules
-* separate css file to avoid FOUC
-* hot reloading via [react-transform](https://github.com/gaearon/babel-plugin-react-transform) & [HMR](http://webpack.github.io/docs/hot-module-replacement.html)
-* webpack bundle builder
-* eslint and golint rules for Makefile
+- server side render via [goja](https://github.com/dop251/goja)
+- api requests between your react application and server side application directly via [fetch polyfill](https://github.com/olebedev/gojax/tree/master/fetch)
+- title, Open Graph and other domain-specific meta tags render for each page at the server and at the client
+- server side redirect
+- embedding static files into artefact via bindata
+- high performance [echo](https://github.com/labstack/echo) framework
+- advanced cli via [cli](https://github.com/codegangsta/cli)
+- Makefile based project
+- one(!) terminal window process for development
+- routing via [react-router](https://github.com/reactjs/react-router)
+- ES6 & JSX via [babel-loader](https://github.com/babel/babel-loader) with minimal runtime dependency footprint
+- [redux](https://rackt.org/redux/) as state container
+- [redux-devtools](https://github.com/gaearon/redux-devtools)
+- css styles without global namespace via PostCSS, [css-loader](https://github.com/webpack/css-loader) & css-modules
+- separate css file to avoid FOUC
+- hot reloading via [react-transform](https://github.com/gaearon/babel-plugin-react-transform) & [HMR](http://webpack.github.io/docs/hot-module-replacement.html)
+- webpack bundle builder
+- eslint and golint rules for Makefile
 
 ## Workflow dependencies
 
-* [golang](https://golang.org/)
-* [node.js](https://nodejs.org/) with [yarn](https://yarnpkg.com)
-* [GNU make](https://www.gnu.org/software/make/)
+- [golang](https://golang.org/)
+- [node.js](https://nodejs.org/) with [yarn](https://yarnpkg.com)
+- [GNU make](https://www.gnu.org/software/make/)
 
 Note that probably not works at windows.
 
 ## Project structure
 
 ##### The server's entry point
+
 ```
 $ tree server
 server
@@ -87,7 +88,7 @@ client
 └── store.js
 ```
 
-The client app will be compiled into `server/data/static/build/`.  Then it will be embedded into go package via _go-bindata_. After that the package will be compiled into binary.
+The client app will be compiled into `server/data/static/build/`. Then it will be embedded into go package via _go-bindata_. After that the package will be compiled into binary.
 
 **Convention**: javascript app should declare [_main_](https://github.com/olebedev/go-starter-kit/blob/master/client/index.js#L4) function right in the global namespace. It will used to render the app at the server side.
 
@@ -120,5 +121,12 @@ that's it. Open [http://localhost:5001/](http://localhost:5001/)(if you use defa
 
 Install dependencies and type `NODE_ENV=production make build`. This rule is producing webpack build and regular golang build after that. Result you can find at `$GOPATH/bin`. Note that the binary will be named **as the current project directory**.
 
+```
+$ docker-compose up -d
+```
+
+Open [http://localhost:5001/](http://localhost:5001/) at your browser.
+
 ## License
+
 MIT
