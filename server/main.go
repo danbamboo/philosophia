@@ -1,38 +1,27 @@
 package main
 
 import (
-	"os"
+	"fmt"
+	"log"
+	"net/http"
 
-	"github.com/codegangsta/cli"
+	"github.com/rs/cors"
+
+	"github.com/philosophia/server/api"
 )
 
+const port = ":5070"
+
 func main() {
-	// defer profile.Start(profile.CPUProfile, profile.ProfilePath(".")).Stop()
-	Run(os.Args)
-}
+	fmt.Println("hi")
 
-// Run creates, configures and runs
-// main cli.App
-func Run(args []string) {
-	app := cli.NewApp()
-	app.Name = "app"
-	app.Usage = "React server application"
+	router := http.NewServeMux()
+	router.HandleFunc("/healthcheck", api.Healthcheck)
+	log.Printf("Starting simple-go-server on port %s", port)
+	a
 
-	app.Commands = []cli.Command{
-		{
-			Name:   "run",
-			Usage:  "Runs server",
-			Action: RunServer,
-		},
-	}
-	app.Run(args)
-}
+	handler := cors.Default().Handler(router)
 
-// RunServer creates, configures and runs
-// main server.App
-func RunServer(c *cli.Context) {
-	app := NewApp(AppOptions{
-	// see server/app.go:150
-	})
-	app.Run()
+	http.ListenAndServe(port, handler)
+	return
 }
